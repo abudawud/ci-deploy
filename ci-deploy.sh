@@ -35,6 +35,9 @@ deploy() {
     fi
 }
 
+# just print the message
+echo $2
+
 case $1 in
     deploy)
         if [[ -n $2 ]]
