@@ -4,7 +4,7 @@ This is just simple rsync command that i use to deploy my project. If you confus
 
 ## How To Use
 
-just modify `.env` file based on your project
+just modify `.env` file based on your project and load it from your `.bashrc`
 
 ## How to implement it
 
