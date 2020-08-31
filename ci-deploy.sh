@@ -1,6 +1,5 @@
 #!/bin/bash
 
-source .env
 appName=$0
 
 usage() {
@@ -18,10 +17,18 @@ do_sync() {
         usage "target directory '$targetDir' not found!"
     fi
 
-    out=`rsync $1 $rsyncParam ./ $targetDir`
+    if $VERBOSE
+    then
+        rsync $1 $rsyncParam ./ $targetDir
+    else
+        rsync $1 $rsyncParam ./ $targetDir 2>&1 > /dev/null
+    fi
+    
     if [[ $? -eq 0 ]]
     then
         echo "Deploy success!"
+    else
+        echo "Deploy failed!"
     fi
 }
 
