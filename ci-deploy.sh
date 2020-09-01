@@ -9,8 +9,10 @@ usage() {
 }
 
 do_sync() {
-    targetDir=${PROJECT["$2_TARGET"]}
-    rsyncParam=${PROJECT["$2_PARAM"]}
+    TARGET_VAR=TARGET_$2
+    PARAM_VAR=PARAM_$2
+    targetDir=${!TARGET_VAR}
+    rsyncParam=${!PARAM_VAR}
 
     if [[ ! -e $targetDir ]]
     then
@@ -33,7 +35,8 @@ do_sync() {
 }
 
 deploy() {
-    if [[ -z ${PROJECT["$1_TARGET"]} ]]
+    TARGET_VAR=TARGET_$1
+    if [[ -z ${!TARGET_VAR} ]]
     then
         usage "project_name '$1' not found in env vars"
     fi
